@@ -1,0 +1,16 @@
+{
+    "name": "branchie",
+    "version": "10.4.1",
+    "main": "main.js",
+    "private": true,
+    "dependencies": {
+        "expression-eval": "^5.0.0",
+        "stateless": "^1.4.2",
+        "toml-js": "^0.0.8",
+        "xml2js": "^0.4.23"
+    },
+    "devDependencies": {
+        "@types/uuid": "^8.3.4",
+        "@types/xml2js": "^0.4.9"
+    }
+}

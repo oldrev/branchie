@@ -1,0 +1,61 @@
+<div class="video-container">
+    <video #player [loop]="videoLoop" [controls]="false" [autoplay]="true" [src]="videoUrl" [volume]="1.0"
+           (ended)="onVideoEnded($event)"
+           (playing)="onVideoPlaying($event)"
+           (pause)="onVideoPaused($event)"
+           (durationchange)="onVideoDurationChanged($event)"
+           (timeupdate)="onVideoTimeUpdated($event)">
+    </video>
+    <div class="overlay" [hidden]="false">
+        <div class="progress-container" [hidden]="!isVideoPlaying">
+            <progress [value]="videoTime" [max]="videoDuration" ></progress>
+        </div>
+
+        <div class="player-controls-container" >
+            <ul>
+                <li><button (click)="onReplayClicked($event)" type="button"><img src="/assets/images/home.svg" /> </button></li>
+            </ul>
+        </div>
+
+        <div class="transitions-container" [hidden]="!canSelect">
+            <ul>
+                <li *ngFor='let t of selectableTransitions;'>
+                    <button (click)="onTransitionSelected($event, t)" class="glow-on-hover-button" type="button">{{t.caption}}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<!--
+
+
+<div class="video-player-container">
+
+    <video #player [loop]="true" [autoplay]="true" [src]="videoUrl" (durationchange)="onVideoDurationChanged($event)"
+        (timeupdate)="onVideoTimeUpdated($event)">
+    </video>
+
+    <div class="overlay">
+
+        <progress [value]="videoTime" [max]=videoDuration></progress>
+
+        <div class="overlay-content">
+            <h1>
+                fdsafdsafdas
+            </h1>
+            <ul>
+                <li *ngFor='let t of selectableTransitions;'>
+                    <button style="width: 80px; height: 40px;" (click)="onTransitionSelected($event)">{{t.caption}}</button>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+</div>
+
+-->
