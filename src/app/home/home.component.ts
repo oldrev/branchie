@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit, BranchieVideoFsmEventsSink{
     /**
      * 进入某个状态
      * 进入状态以后我们就播放视频，播放完成以后根据设置处理
+     *
      * @param trigger 触发进入此状态的 transition
      */
     async onEnterActivity(trigger: BranchieVideoTransition): Promise<void> {
@@ -71,6 +72,7 @@ export class HomeComponent implements OnInit, BranchieVideoFsmEventsSink{
 
     /**
      * 分支按钮点击后事件处理
+     *
      * @param event
      * @param tran
      */
@@ -129,6 +131,7 @@ export class HomeComponent implements OnInit, BranchieVideoFsmEventsSink{
 
     /**
      * 视频跳转位置
+     *
      * @param time 视频位置（毫秒）
      */
     private rewind(time: number): void {
