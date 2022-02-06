@@ -42,6 +42,10 @@ export class HomeComponent implements OnInit, BranchieVideoFsmEventsSink{
         console.log('触发器 tid=' + trigger.id);
 
         const act = this.videoFsm.currentActivity;
+        if(this.videoUrl !== act.video) {
+            this.videoUrl = act.video;
+        }
+
         this.rewind(act.timeStart); // activity 里的时间是毫秒，播放器需要秒
         this.resume();
     }
@@ -55,6 +59,7 @@ export class HomeComponent implements OnInit, BranchieVideoFsmEventsSink{
     }
 
     onVideoDurationChanged(event): void {
+        console.log(this.videoUrl.toString());
         /*
         if (!isNaN(this.videoDuration)) {
             this.videoDuration = this.player.nativeElement.duration * 1000;
@@ -108,6 +113,7 @@ export class HomeComponent implements OnInit, BranchieVideoFsmEventsSink{
     }
 
     private async reinit(): Promise<void> {
+        this.clearTransitions();
         const videoConfig = await this.videoService.loadVideoConfig();
         this.videoFsm  = new BranchieVideoFsm(videoConfig, this);
         this.playVideo();
@@ -174,7 +180,10 @@ export class HomeComponent implements OnInit, BranchieVideoFsmEventsSink{
     private updateTime(): void {
         const act = this.videoFsm.currentActivity;
         this.videoTime = (this.player.nativeElement.currentTime * 1000.0) - act.timeStart;
-        this.videoDuration = act.timeEnd - act.timeStart;
+        let endTime = (act.timeEnd !== undefined && !isNaN(act.timeEnd) ?
+            act.timeEnd : this.player.nativeElement.duration * 1000);
+        endTime = isNaN(endTime) ? 0 : endTime;
+        this.videoDuration = endTime - act.timeStart;
     }
 
 }

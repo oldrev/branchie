@@ -17,7 +17,6 @@ export class BranchieVideoFsm {
 
     constructor(videoConfig: BranchieVideoConfig, private readonly eventsSink: BranchieVideoFsmEventsSink) {
         this.startupActivityInternal = videoConfig.activities.filter(x => x.isStart)[0];
-        this.endActivityInternal = videoConfig.activities.filter(x => x.isEnd)[0];
 
         this.fsm = new StateMachine<string, string>({
             accessor: () => this.currentActivityID, mutator: state => this.currentActivityID = state
@@ -46,10 +45,6 @@ export class BranchieVideoFsm {
 
     get startupActivity(): BranchieVideoActivity {
         return this.startupActivityInternal;
-    }
-
-    get endActivity(): BranchieVideoActivity {
-        return this.endActivityInternal;
     }
 
     get totalScore(): number {
@@ -85,6 +80,9 @@ export class BranchieVideoFsm {
         this.totalScoreNow += to.score; // 计分
         //this.OnActivityEntryEvent?.Invoke(this, new OnActivityEntryEventArgs(from, to, trigger));
         await this.eventsSink.onEnterActivity(trigger);
+        if(to.isEnd) {
+            this.totalScoreNow = 0;
+        }
     }
 
 }
