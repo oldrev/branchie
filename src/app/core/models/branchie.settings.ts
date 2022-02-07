@@ -6,6 +6,6 @@ export interface BranchieSettings {
     } | undefined;
 
     video: {
-        videoDirectory: string;
+        videoDirectory: string | undefined;
     };
 }

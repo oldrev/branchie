@@ -22,6 +22,7 @@ export class AppSettingsService {
     getSettings(): BranchieSettings {
 
         if(!AppSettingsService.appSettings) {
+            console.log('>>>>>>>>>>>>>>>>>>> Command line args:', this.electron.process.argv);
             const settingsFilePath = this.electron.path.join(this.electron.appDir, 'etc', 'branchie.ini');
             if(!this.electron.fs.existsSync(settingsFilePath)) {
                 throw new Error('Can not found settings file: ' + settingsFilePath);

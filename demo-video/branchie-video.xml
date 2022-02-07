@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<branchie-video>
+
+	<activities>
+
+
+		<activity id="开始" video="start.mp4" start="true" />
+
+		<activity id="选择" video="选择.mp4" />
+
+		<activity id="三连" video="三连.mp4" score="1" />
+
+		<activity id="后腿" video="后腿.mp4" />
+
+		<activity id="喂食" video="喂食.mp4" score="2" />
+
+		<activity id="摸下巴" video="下巴.mp4" />
+
+		<activity id="握手" video="握手.mp4" />
+
+		<activity id="握手不开心" video="握手不开心.mp4" />
+
+		<activity id="好结局" video="好结局.mp4" end="true" />
+
+		<activity id="坏结局" video="坏结局.mp4" end="true" />
+
+
+	</activities>
+
+	<transitions>
+
+		<transition caption="先给个三连吧！" priority="0" from="开始" to="三连" />
+		<transition caption="下次一定" priority="0" from="开始" to="选择" />
+		<transition caption="自动跳转选择" priority="0" from="三连" to="选择" wait-signal="false" />
+
+		<transition caption="被迫营业结束" priority="0" from="好结局" to="开始" />
+		<transition caption="被迫营业结束" priority="0" from="坏结局" to="开始" />
+
+		<transition caption="先给我吃点儿！" priority="0" from="选择" to="喂食" if="fsm.totalScore < 2" />
+		<transition caption="吃完开始营业" priority="0" from="喂食" to="选择" />
+
+
+		<transition caption="摸摸下巴" priority="0" from="选择" to="摸下巴" />
+		<transition caption="营业结束" priority="0" from="摸下巴" to="好结局" if="fsm.totalScore > 0" wait-signal="false" />
+		<transition caption="营业结束" priority="0" from="摸下巴" to="坏结局" if="fsm.totalScore <= 0" wait-signal="false" />
+
+		<transition caption="摸摸后腿" priority="10" from="选择" to="后腿" />
+		<transition caption="营业结束" priority="0" from="后腿" to="好结局" if="fsm.totalScore > 0" wait-signal="false" />
+		<transition caption="营业结束" priority="0" from="后腿" to="坏结局" if="fsm.totalScore <= 0" wait-signal="false" />
+
+		<transition caption="握爪" priority="10" from="选择" to="握手" if="fsm.totalScore > 0" />
+		<transition caption="自动结束" priority="0" from="握手" to="好结局" if="fsm.totalScore > 0" wait-signal="false" />
+		<transition caption="自动结束" priority="0" from="握手" to="坏结局" if="fsm.totalScore <= 0" wait-signal="false" />
+
+		<transition caption="握爪" priority="10" from="选择" to="握手不开心" if="fsm.totalScore <= 0" />
+		<transition caption="自动结束" priority="0" from="握手不开心" to="坏结局" wait-signal="false" />
+
+	</transitions>
+
+
+</branchie-video>

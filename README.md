@@ -28,6 +28,34 @@
 
 如果觉得项目有用，可以帮我点个星星，这对我非常有帮助。
 
+# 上手指南
+
+## 启动及运行
+
+首先通过命令行进入本项目根目录，通过 `npm` 安装依赖：
+
+```bash
+$> npm install 
+$> cd app
+$> npm install
+```
+
+开发模式运行：
+
+```bash
+$> npm start
+```
+
+构建可执行文件（构建结果根据当前操作系统而定）：
+```bash
+$> npm run electron:build
+```
+
+编译完成即可在 `./release` 中看到。
+
+## 关于演示视频
+
+演示视频在 `demo-video` 中，可以参考 `branchie-video.xml` 中的格式，具体请见介绍视频及源代码。
 
 # 版权
 
@@ -46,13 +74,14 @@
 
 ## 鸣谢
 
-没有如下开源项目的支持本项目不可能轻易实现，非常感谢：
+没有如下开源项目和素材的支持本项目不可能轻易实现，非常感谢：
 
 * 初始项目模板：[AngularElectron](https://img.shields.io/badge/maintained-yes-brightgreen)
 * [stateless]()
 * [toml-js]()
 * [xml2js]()
 * [`expression-eval`]()
+* [三连动画](https://www.bilibili.com/video/av96347968/)
 
 
 [maintained-badge]: https://img.shields.io/badge/maintained-yes-brightgreen

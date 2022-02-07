@@ -24,6 +24,13 @@
             "filter": [
                 "**/*"
             ]
+        },
+        {
+            "from": "demo-video",
+            "to": "../demo-video",
+            "filter": [
+                "**/*"
+            ]
         }
     ],
     "win": {
