@@ -12,7 +12,7 @@
 
 # Branchie：超级简单的开源 HTML5 互动视频播放器
 
-![fsm](https://raw.githubusercontent.com/oldrev/branchie/master/docs/fsm.svg)
+![fsm](https://raw.githubusercontent.com/oldrev/branchie/master/docs/screen-shot.jpg)
 
 
 本项目基于有限状态机原理实现了一个功能类似《哔哩哔哩》网站的 HTML5 互动视频播放器，支持视频分支计分和条件判断表达式等高级功能。
@@ -21,8 +21,8 @@
 
 本项目的介绍视频：
 
-* [YouTube]()
-* [哔哩哔哩]()
+* [YouTube: TODO]()
+* [哔哩哔哩: TODO]()
 
 演示用的视频片段已打包在构建好的 `zip` 包中，右边“Releases”中可以直接下载测试。
 
