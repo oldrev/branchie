@@ -4,6 +4,7 @@
 [![License][license-badge]](LICENSE)
 
 [![Linux Build][linux-build-badge]][linux-build]
+[![MacOS Build][macos-build-badge]][macos-build]
 [![Windows Build][windows-build-badge]][windows-build]
 
 [![Watch on GitHub][github-watch-badge]][github-watch]
@@ -92,6 +93,8 @@ $> npm run electron:build
 
 [linux-build-badge]: https://github.com/oldrev/branchie/workflows/Linux%20Build/badge.svg
 [linux-build]: https://github.com/oldrev/branchie/actions?query=workflow%3A%22Linux+Build%22
+[macos-build-badge]: https://github.com/oldrev/branchie/workflows/MacOS%20Build/badge.svg
+[macos-build]: https://github.com/oldrev/branchie/actions?query=workflow%3A%22MacOS+Build%22
 [windows-build-badge]: https://github.com/oldrev/branchie/workflows/Windows%20Build/badge.svg
 [windows-build]: https://github.com/oldrev/branchie/actions?query=workflow%3A%22Windows+Build%22
 
