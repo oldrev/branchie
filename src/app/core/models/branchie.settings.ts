@@ -1,9 +1,8 @@
-import {InjectionToken} from '@angular/core';
+import { InjectionToken } from '@angular/core';
 
 
 export interface BranchieSettings {
-    app?: {
-    } | undefined;
+    app?: Record<string, never> | undefined;
 
     video: {
         videoDirectory: string | undefined;
