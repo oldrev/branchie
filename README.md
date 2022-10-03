@@ -33,12 +33,15 @@
 
 ## 启动及运行
 
-首先通过命令行进入本项目根目录，通过 `npm` 安装依赖：
+本项目使用 `pnpm` 安装包和管理项目。
+
+首先通过命令行进入本项目根目录，通过 `pnpm` 安装依赖：
 
 ```bash
-$> npm install 
+$> pnpm install -g @angular/cli
+$> pnpm install 
 $> cd app
-$> npm install
+$> pnpm install
 ```
 
 开发模式运行：
