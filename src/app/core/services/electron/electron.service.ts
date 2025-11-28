@@ -14,14 +14,14 @@ import * as url from 'url';
     providedIn: 'root'
 })
 export class ElectronService {
-    app: typeof app;
-    ipcRenderer: typeof ipcRenderer;
-    webFrame: typeof webFrame;
-    childProcess: typeof childProcess;
-    fs: typeof fs;
-    path: typeof path;
-    process: typeof process;
-    url: typeof url;
+    app!: typeof app;
+    ipcRenderer!: typeof ipcRenderer;
+    webFrame!: typeof webFrame;
+    childProcess!: typeof childProcess;
+    fs!: typeof fs;
+    path!: typeof path;
+    process!: typeof process;
+    url!: typeof url;
 
     constructor() {
         // Conditional imports

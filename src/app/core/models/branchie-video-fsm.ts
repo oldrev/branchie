@@ -10,7 +10,6 @@ export class BranchieVideoFsm {
     private totalScoreNow = 0;
     private currentActivityID: string;
     private startupActivityInternal: BranchieVideoActivity;
-    private endActivityInternal: BranchieVideoActivity;
     private readonly fsm: StateMachine<string, string>;
     private readonly activitiesLookup: { [id: string]: BranchieVideoActivity } = {};
     private readonly transitionsLookup: { [id: string]: BranchieVideoTransition } = {};

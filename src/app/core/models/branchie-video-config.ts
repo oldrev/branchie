@@ -18,14 +18,14 @@ export class BranchieVideoActivity implements BranchieVideoNode {
     constructor(readonly id: string,
                 readonly video: URL,
                 readonly isStart: boolean = false,
-                readonly isEnd: boolean = false, options?: {
-        score: number | 0;
-        isLoop?: boolean | false;
-        timeStart?: string | undefined;
-        timeEnd?: string | undefined;
-    }) {
-        this.isLoop = options.isLoop;
-        this.score = options.score;
+                readonly isEnd: boolean = false, options: {
+        score?: number;
+        isLoop?: boolean;
+        timeStart?: string;
+        timeEnd?: string;
+    } = {}) {
+        this.isLoop = options.isLoop ?? false;
+        this.score = options.score ?? 0;
         this.timeStart = options.timeStart === undefined ? 0 : TimeSpan.parse(options.timeStart).totalMilliseconds;
         this.timeEnd = options.timeEnd === undefined ? undefined : TimeSpan.parse(options.timeEnd).totalMilliseconds;
     }
@@ -41,16 +41,16 @@ export class BranchieVideoTransition implements BranchieVideoNode {
     constructor(
         readonly from: BranchieVideoActivity,
         readonly to: BranchieVideoActivity,
-        options?: {
-            caption?: string | '';
-            priority?: number | 0;
-            waitSignal?: boolean | undefined;
-            condition?: string | undefined;
-        }
+        options: {
+            caption?: string;
+            priority?: number;
+            waitSignal?: boolean;
+            condition?: string;
+        } = {}
     ) {
-        this.caption = options.caption;
-        this.priority = options.priority;
-        this.waitSignal = options.waitSignal === undefined ? true : options.waitSignal;
+        this.caption = options.caption ?? '';
+        this.priority = options.priority ?? 0;
+        this.waitSignal = options.waitSignal ?? true;
         this.condition = options.condition === undefined ? expressionEval.parse('true') : expressionEval.parse(options.condition);
     }
 

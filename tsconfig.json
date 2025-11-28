@@ -8,8 +8,10 @@
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
         "allowJs": true,
-        "target": "es5",
+        "target": "es2015",
         "allowSyntheticDefaultImports": true,
         "typeRoots": [
             "node_modules/@types"

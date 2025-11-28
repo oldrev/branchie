@@ -10,7 +10,7 @@ import { BranchieVideoService, ElectronService } from '../core/services';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, BranchieVideoFsmEventsSink{
-    @ViewChild('player') player: ElementRef;
+    @ViewChild('player') player!: ElementRef;
 
     videoUrl: URL | undefined = undefined;
     videoLoop = false;
@@ -18,8 +18,8 @@ export class HomeComponent implements OnInit, BranchieVideoFsmEventsSink{
     videoDuration = 0;
     isVideoPlaying = false;
     x = 0;
-    selectableTransitions: BranchieVideoTransition[];
-    videoFsm: BranchieVideoFsm;
+    selectableTransitions: BranchieVideoTransition[] = [];
+    videoFsm!: BranchieVideoFsm;
     canSelect = false;
 
     constructor(
@@ -58,8 +58,10 @@ export class HomeComponent implements OnInit, BranchieVideoFsmEventsSink{
         this.reinit();
     }
 
-    onVideoDurationChanged(event): void {
-        console.log(this.videoUrl.toString());
+    onVideoDurationChanged(event: any): void {
+        if (this.videoUrl) {
+            console.log(this.videoUrl.toString());
+        }
         /*
         if (!isNaN(this.videoDuration)) {
             this.videoDuration = this.player.nativeElement.duration * 1000;
@@ -70,7 +72,7 @@ export class HomeComponent implements OnInit, BranchieVideoFsmEventsSink{
     /**
      * 播放器视频播放完毕
      */
-    async onVideoEnded(event): Promise<void> {
+    async onVideoEnded(event: any): Promise<void> {
         this.isVideoPlaying = false;
         await this.finishVideoClip();
     }
@@ -81,7 +83,7 @@ export class HomeComponent implements OnInit, BranchieVideoFsmEventsSink{
      * @param event
      * @param tran
      */
-    async onTransitionSelected(event, tran: BranchieVideoTransition): Promise<void> {
+    async onTransitionSelected(event: any, tran: BranchieVideoTransition): Promise<void> {
         this.clearTransitions();
         await this.videoFsm.fireSignal(tran.id);
     }
@@ -89,7 +91,7 @@ export class HomeComponent implements OnInit, BranchieVideoFsmEventsSink{
     /**
      * 播放器时间（进度）更新
      */
-    async onVideoTimeUpdated(event): Promise<void> {
+    async onVideoTimeUpdated(event: any): Promise<void> {
         if (!isNaN(this.videoTime)) {
             this.updateTime();
             const realVideoTime = this.player.nativeElement.currentTime * 1000;
@@ -100,15 +102,15 @@ export class HomeComponent implements OnInit, BranchieVideoFsmEventsSink{
         }
     }
 
-    onVideoPlaying(event) {
+    onVideoPlaying(event: any) {
         this.isVideoPlaying = true;
     }
 
-    onVideoPaused(event) {
+    onVideoPaused(event: any) {
         this.isVideoPlaying = false;
     }
 
-    onReplayClicked(event) {
+    onReplayClicked(event: any) {
         this.reinit();
     }
 

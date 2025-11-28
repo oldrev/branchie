@@ -20,11 +20,11 @@ export class BranchieVideoService {
 
     makeVideoPath(videoFileName: string): string {
         const appSettings = this.appSettingService.getSettings();
-        return this.electron.path.join(appSettings.video.videoDirectory, videoFileName);
+        return this.electron.path.join(appSettings.video.videoDirectory ?? '', videoFileName);
     }
 
     makeVideoUrl(videoFileName: string): URL {
-        return this.electron.url.pathToFileURL(this.makeVideoPath(videoFileName));
+        return this.electron.url.pathToFileURL(this.makeVideoPath(videoFileName)) as URL;
     }
 
     async loadVideoConfig(): Promise<BranchieVideoConfig> {
@@ -33,7 +33,7 @@ export class BranchieVideoService {
     }
 
     private async parseVideoConfig(): Promise<BranchieVideoConfig> {
-        const xmlPath = this.electron.path.join(this.settings.video.videoDirectory, 'branchie-video.xml');
+        const xmlPath = this.electron.path.join(this.settings.video.videoDirectory ?? '', 'branchie-video.xml');
         const xmlContent = await this.electron.fs.promises.readFile(xmlPath);
 
         const xmlDoc = await xml2js.parseStringPromise(xmlContent, {
@@ -45,7 +45,7 @@ export class BranchieVideoService {
         const vc = new BranchieVideoConfig();
 
         // 处理 activities
-        xmlDoc['branchie-video'].activities.activity.forEach(ele => {
+        xmlDoc['branchie-video'].activities.activity.forEach((ele: any) => {
             const videoUrl = this.makeVideoUrl(ele.$.video);
             const act = new BranchieVideoActivity(ele.$.id, videoUrl, ele.$.start, ele.$.end, {
                 score: isNaN(ele.$.score) ? 0 : parseInt(ele.$.score, 10),
@@ -57,7 +57,7 @@ export class BranchieVideoService {
         });
 
         // 处理 transitions
-        xmlDoc['branchie-video'].transitions.transition.forEach(ele => {
+        xmlDoc['branchie-video'].transitions.transition.forEach((ele: any) => {
             const fromAct = vc.activities.filter(x => x.id === ele.$.from)[0];
             const toAct = vc.activities.filter(x => x.id === ele.$.to)[0];
             const tran = new BranchieVideoTransition(fromAct, toAct, {

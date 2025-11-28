@@ -47,12 +47,12 @@ $> pnpm install
 开发模式运行：
 
 ```bash
-$> npm start
+$> pnpm run start
 ```
 
 构建可执行文件（构建结果根据当前操作系统而定）：
 ```bash
-$> npm run electron:build
+$> pnpm run electron:build
 ```
 
 编译完成即可在 `./release` 中看到。

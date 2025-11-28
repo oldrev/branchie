@@ -29,7 +29,7 @@ export class AppSettingsService {
             }
             const iniBuffer = this.electron.fs.readFileSync(settingsFilePath, 'utf-8');
             const settings = toml.parse(iniBuffer) as BranchieSettings;
-            settings.video.videoDirectory = this.electron.path.resolve(settings.video.videoDirectory);
+            settings.video.videoDirectory = this.electron.path.resolve(settings.video.videoDirectory ?? '');
             AppSettingsService.appSettings = settings;
         }
         return AppSettingsService.appSettings;
