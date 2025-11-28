@@ -4,10 +4,10 @@
     "main": "main.js",
     "private": true,
     "dependencies": {
-        "expression-eval": "^5.0.0",
+        "expression-eval": "^5.0.1",
         "stateless": "^1.4.2",
         "toml-js": "^0.0.8",
-        "xml2js": "^0.4.23"
+        "xml2js": "^0.6.2"
     },
     "devDependencies": {
         "@types/uuid": "^8.3.4",
